@@ -1,7 +1,7 @@
 <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item nav-title">
-              <p>ユーザ情報</p>
+              <p>ユーザさん、こんにちは</p>
             </li>
             <li class="nav-item">
                <p>ユーザ名</p>
@@ -9,9 +9,7 @@
             <li class="nav-item">
                <p>メールアドレス</p>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Export</a>
-            </li>
+            <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>
           </ul>
 
           <ul class="nav nav-pills flex-column">
