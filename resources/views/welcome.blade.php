@@ -2,9 +2,10 @@
 
 @section('content')
     @if (Auth::check())
-        <?php $user = Auth::user(); ?>
-        {{ $user->name }}
-    @else
+            <div class="col-lg-12 col-xs-8">
+                    @include('webapps.webapps')
+            </div>
+     @else
         <div class="center jumbotron">
             <div class="text-center">
                 <h1>Web制作管理アプリへようこそ</h1>

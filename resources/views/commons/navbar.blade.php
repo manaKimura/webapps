@@ -1,13 +1,14 @@
-<nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+<nav class="col-lg-2 col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item nav-title">
-              <p>ユーザさん、こんにちは</p>
+              <?php $user = Auth::user(); ?>
+              <p>{{ $user->name }}さん、こんにちは</p>
             </li>
             <li class="nav-item">
-               <p>ユーザ名</p>
+               <p>ユーザ名: {{ $user->name }}</p>
             </li>
             <li class="nav-item">
-               <p>メールアドレス</p>
+               <p>メールアドレス: {{ $user->email }}</p>
             </li>
             <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>
           </ul>
@@ -23,12 +24,12 @@
               <a class="nav-link" href="#">Bプロジェクト</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">新規追加</a>
+              <a class="nav-link btn btn-success" href="#">新規追加</a>
             </li>
           </ul>
 
           <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
+            <li class="nav-item nav-title">
               <p>メールテンプレ</p>
             </li>
             <li class="nav-item">
@@ -39,6 +40,6 @@
             </li>
           </ul>
           <div class="nav nav-pills flex-column">
-             <a class="nav-link" href="#">あなたのカレンダー</a> 
+             <a class="nav-link nav-title" href="#">あなたのカレンダー</a> 
           </div>
         </nav>
