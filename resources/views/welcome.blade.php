@@ -3,7 +3,7 @@
 @section('content')
     @if (Auth::check())
             <div class="col-lg-12 col-xs-8">
-                    @include('webapps.webapps')
+                    @include('webapps.webapps', ['projects' => $projects])
             </div>
      @else
         <div class="center jumbotron">

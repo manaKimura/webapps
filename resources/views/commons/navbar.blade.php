@@ -14,18 +14,21 @@
           </ul>
 
           <ul class="nav nav-pills flex-column">
-            <li class="nav-item nav-title">
-              <p>案件名</p>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Aプロジェクト</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Bプロジェクト</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn btn-success" href="#">新規追加</a>
-            </li>
+              <li class="nav-item nav-title">
+                <p>案件名</p>
+              </li>
+              @foreach ($projects as $project)
+              <li class="nav-item">
+                <a class="nav-link" href="#">{{ $project->project_name }}</a>
+              </li>
+              @endforeach
+              <li class="nav-item">
+                {!! link_to_route('projects.create', '新規追加') !!}
+              </li>
+              <li class="nav-item">
+                 {!! link_to_route('projects.allProjects', 'プロジェクト一覧から登録', null, ['class' => 'btn btn-lg btn-primary']) !!}
+              </li>
+            {!! $projects->render() !!}
           </ul>
 
           <ul class="nav nav-pills flex-column">
