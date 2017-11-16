@@ -24,5 +24,15 @@ Route::post('login', 'Auth\AuthController@postLogin')->name('login.post');
 Route::get('logout', 'Auth\AuthController@getLogout')->name('logout.get');
 
 //プロジェクト
-Route::resource('projects', 'ProjectsController', ['only' => ['index', 'show', 'create', 'store','update', 'destroy']]);
+Route::resource('projects', 'ProjectsController');
+Route::post('/project_login/{id}', 'ProjectsController@project_login');
+Route::post('projects_login', 'ProjectsController@project_login_store')->name('projects_login.project_login_store');
+
+//プロジェクトの工程
+Route::resource('process', 'ProcessController');
+Route::resource('rule', 'RuleController');
+Route::get('rule', 'RuleController@index')->name('rule.index');
+
+
+
 

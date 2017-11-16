@@ -18,7 +18,11 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+
+        return view('projects.index', [
+            'projects' => $projects,
+        ]);
     }
 
     /**
@@ -29,7 +33,7 @@ class ProjectsController extends Controller
     public function create()
     {
         $project = new Project;
-
+        
         return view('projects.create', [
             'project' => $project,
         ]);
@@ -43,12 +47,11 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->user()->projects()->create([
-            'project_name' => $request->project_name,
-            'password' => $request->password,
-            
-        ]);
-
+        $project = new Project;
+        $project->project_name = $request->project_name;
+        $project->password = $request->password;
+        $project->save();
+        \Auth::user()->addProject($project->id);/*ユーザのidを参照にして、プロジェクトのidを中間テーブルのproject_idに追加*/
         return redirect('/');
     }
 
@@ -71,7 +74,7 @@ class ProjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -96,4 +99,39 @@ class ProjectsController extends Controller
     {
         //
     }
+    
+    //プロジェクトのパスワード画面表示
+    public function project_login($id)
+    {
+        $project = Project::find($id);
+        
+         return view('projects.project_login', [
+            'project' => $project,
+        ]);   
+    }
+    
+    //プロジェクトのパスワード認証
+    /*public function project_login($id)
+    {
+        $project = Project::find($id);
+        
+         return view('projects.project_login', [
+            'project' => $project,
+        ]);   
+    }*/
+    
+    //プロジェクトのパスワード認証
+    public function project_login_store(Request $request)
+    {
+        $project = Project::find($request->id);
+        
+        if ($request->password === $project->password) {
+            \Auth::user()->addProject($request->id);
+            return redirect()->back();
+        }
+        
+        return redirect()->back();
+    }
+    
+  
 }

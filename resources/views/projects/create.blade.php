@@ -18,10 +18,10 @@
             @include('commons.error_messages')
             
             <h1>プロジェクト新規追加</h1>
-            {!! Form::model($project, ['route' => 'projects.store']) !!}
+            {!! Form::open(['route' => 'projects.store', 'method' => 'post']) !!}
 
                 {!! Form::label('project_name', 'プロジェクト名:') !!}
-                {!! Form::text('project_name', old('project_name'), ['class' => 'form-control']) !!}
+                {!! Form::text('project_name', null, ['class' => 'form-control']) !!}
                 
                 {!! Form::label('password', 'パスワード:') !!}
                 {!! Form::password('password', ['class' => 'form-control']) !!}
